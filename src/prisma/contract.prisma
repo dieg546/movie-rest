@@ -1,0 +1,80 @@
+// use prisma-8
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   email     String   @unique
+//   username  String?
+//   name      String?
+//   posts     Post[]
+//   createdAt TimestamptzString @default(now())
+//   updatedAt temporal.updatedAtString()
+// }
+
+// model Post {
+//   id        Int      @id @default(autoincrement())
+//   title     String
+//   content   String?
+//   author    User     @relation(fields: [authorId], references: [id])
+//   authorId  Int
+//   createdAt TimestamptzString @default(now())
+//   updatedAt temporal.updatedAtString()
+// }
+
+model User{
+
+  id String @id @default(uuid())
+  name String
+  lastname String
+  email String @unique
+  password String
+  createdAt TimestampString @default(now())
+
+  movies Movie[] @relation("MovieCreator")
+  watchListItem WatchListItem[]
+
+}
+
+model Movie{
+
+  id String @id @default(uuid())
+  title String
+  overview String?
+  releaseYear Int
+  genres String[] @default([])
+  runtime Int?
+  postaerUrl String?
+  createdBy String
+  createdAt TimestampString @default(now())
+
+  creator User @relation("MovieCreator", fields: [createdBy], references:[id], onDelete: Cascade)
+  watchListItem WatchListItem[]
+
+}
+
+model WatchListItem{
+
+  id String @id @default(uuid())
+  userId String
+  movieId String
+  status WatchListStaus @default(PLANNED)
+  rating Int?
+  notes String?
+  createdAt TimestampString @default(now())
+  updatedAt TimestampString @default(now())
+
+
+  //Relations
+  user User @relation(fields: [userId], references:[id], onDelete: Cascade)
+  movie Movie @relation(fields: [movieId], references:[id])
+
+
+}
+
+enum WatchListStaus{
+
+  PLANNED
+  WATCHING
+  COMPLETED
+  DROPPED
+
+}
