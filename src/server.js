@@ -2,6 +2,7 @@
  
 import movieRoutes from './routes/movieRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+import watchListRoute from './routes/watchListRoute.js'
 
 
 import express from "express"
@@ -12,7 +13,7 @@ config();
 const app = express();  
 const PORT = 5001;
 
-
+//Respuestas de tipo Json
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
@@ -30,3 +31,4 @@ app.get('/task', (req, res)=>{
 
 app.use("/movies", movieRoutes)
 app.use("/auth", authRoutes)
+app.use("/watch-list", watchListRoute)

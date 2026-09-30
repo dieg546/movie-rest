@@ -697,7 +697,14 @@
                   "id"
                 ]
               },
-              "uniques": []
+              "uniques": [
+                {
+                  "columns": [
+                    "userId",
+                    "movieId"
+                  ]
+                }
+              ]
             }
           },
           "valueSet": {
@@ -716,7 +723,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "59412dc64f2797f734c40fb647da089a00d877ffc370bde9b6532e2723dde4d7"
+    "storageHash": "51c193a3abf533a6c22a2f247e0b1b480111f450d98aebe18199b9a9d564fab6"
   },
   "execution": {
     "executionHash": "82fca9bc4996ad7b494f3b1f441c0b1b6e347b8af160b2151b8dc44cf931fb7f",

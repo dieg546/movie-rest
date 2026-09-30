@@ -67,10 +67,11 @@ model WatchListItem{
   user User @relation(fields: [userId], references:[id], onDelete: Cascade)
   movie Movie @relation(fields: [movieId], references:[id])
 
+  @@unique([userId, movieId])
 
 }
 
-enum WatchListStaus{
+enum WatchListStaus{ 
 
   PLANNED
   WATCHING
